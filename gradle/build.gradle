@@ -1,0 +1,29 @@
+﻿buildscript {
+    repositories {
+		maven { url 'https://maven.aliyun.com/repository/central'}
+        mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+}
+repositories {
+	maven { url 'https://maven.aliyun.com/repository/central'}
+    mavenCentral()
+}
+apply plugin: 'java'
+
+group '${PackageName}'
+version '${PluginVersion}'
+
+jar {
+    baseName = "${PluginName}"
+    version = "${PluginVersion}"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+dependencies {
+    implementation 'net.mamoe:mirai-core-all:${CoreVersion}:all'
+    implementation 'net.mamoe:mirai-console:${ConsoleVersion}:all'
+}
