@@ -1,14 +1,16 @@
-# BlocklyMirai
-
+<div style="margin: 0 auto; text-align:center;">
+    <img src="https://mirai.mamoe.net/assets/uploads/files/1636954539080-blocklymirai-logo.png"/>
+    <a href="https://mirai.mamoe.net/topic/784" target="_blank"><img src="https://img.shields.io/badge/MiraiForum-topic-blue"/></a>
+</div>
 **[WORK IN PROGRESS]**
 
-使用 [Google/Blockly](https://github.com/Google/Blockly) 来更简单地编写 [mamoe/mirai-console](https://github.com/mamoe/mirai-consle) 的插件
+使用 [Google/Blockly](https://github.com/Google/Blockly) 来更简单地编写 [mamoe/mirai-console](https://github.com/mamoe/mirai-console) 的插件
 
 # Blockly 是什么?
 
 Blockly 是由 Google 开发的一个库，主要功能是作为一个代码编辑器，特色是用形象的积木块来让用户使用极其简单的形式进行编程。本项目使用它作为基础来开发，将编写 mirai 机器人中常用的代码翻译成积木块，使更多用户能参与到编写 mirai 机器人插件的工作中，降低上手 mirai 的门槛。
 
-## 声明
+# 声明
 
 同 mirai 一样，**一切开发旨在学习，请勿用于非法用途**
 
@@ -16,7 +18,7 @@ Blockly 是由 Google 开发的一个库，主要功能是作为一个代码编�
 - BlocklyMirai 不会通过任何方式强制收取费用，或对使用者提出物质条件
 - BlocklyMirai 由整个开源社区维护，并不是属于某个个体的作品，所有贡献者都享有其作品的著作权。
 
-## 许可证
+# 许可证
 
 本项目使用 [GNU Affero General Public License v3.0](https://github.com/DoomsdaySociety/RPGProject/blob/main/LICENSE) (AGLP v3) 许可证开源。
 
@@ -30,11 +32,11 @@ a service over a network, the complete source code of the modified version
 must be made available.
 ```
 
-## 大致构造
+# 大致构造
 
 使用 C# 和 CefSharp 作为窗口和浏览器框架支持，以承载静态 html+css+js 的 blockly ，通过编写积木块来实现生成代码的功能，以 CefSharp 为桥梁，C# 和 javascript 间互相调用，做到在“网页”上读取项目列表、加载项目、导出 gradle 项目并构建等功能。为了便利，UI 基本上都使用 html+css+js 来实现。~~前端好快乐啊（开始掉发）~~
 
-## 我适合使用 BlocklyMirai 吗?
+# 我适合使用 BlocklyMirai 吗?
 
 如果你能通过 [Java 测验 | 菜鸟教程 (runoob.com)](https://www.runoob.com/quiz/java-quiz.html)，那你应该阅读官方给出的文档或者我的 [mirai-doc](https://mirai-doc.doomteam.fun) 去研究如何编写 mirai 插件。如果你完全不会编程，请记住，BlocklyMirai 虽然可以帮你编写插件，但这**并不是最优解**，想要做到更高端、更自由的操作需要你去学习编程。
 
@@ -42,7 +44,7 @@ must be made available.
 
 [kotlin 教程](https://www.runoob.com/kotlin/kotlin-tutorial.html) | [java 教程](https://www.runoob.com/java/java-tutorial.html)
 
-## 如何安装
+# 如何安装
 
 (如果网页无法打开，可以尝试使用[开发者边车](https://gitee.com/docmirror/dev-sidecar)来解决)
 到 [Releases](https://github.com/MrXiaoM/BlocklyMirai/releases) 上下载 BlocklyMirai.zip 并找个地方解压，打开 BlocklyMirai.exe 即可打开通往新世界的大门！
@@ -51,12 +53,14 @@ must be made available.
 
 注：由于本项目受众大多为 Windows 用户，故目前没有适配除 Windows 以外其他系统的计划。但是不用担心，使用 BlocklyMirai 制作的插件除非你写下了只有在 Windows 系统用的等功能/代码以外，插件依旧是全平台可用的。
 
-## 发布
+**补充：本程序需要 .NET Framework 4.7.2 来运行，如果你没有安装，[点击这里下载](https://dotnet.microsoft.com/download/dotnet-framework/net472)**
+
+# 发布
 
 非定性要求，如果你要在论坛发布你使用 BlocklyMirai 编写的插件，请在帖子标题最前面加上 `[BM]` 并加上话题 `BlocklyMirai` 表示使用 BlocklyMirai 编写，**不仅可以让用户们更容易分辨，也是对本项目的支持**。
 如果你要开源你的 BlocklyMirai 作品，你可以通过`保存当前项目`按钮保存文件并放到仓库上，或者将`项目文件原文`存到文件内放到仓库上，两者都是一样的。协议自定，推荐使用  [GNU Affero General Public License v3.0](https://github.com/DoomsdaySociety/RPGProject/blob/main/LICENSE)。实质性地修改使用 BlocklyMirai 生成的 java 代码(指添加了实际功能，而不是加了无用代码)可不声明使用 BlocklyMirai 生成。~~不会吧不会吧不会真的有人会用 BlocklyMirai 生成出来的那么烂的代码吧我手写都比它好~~
 
-## 我也要编写积木块
+# 我也要编写积木块
 
 积木块列表： `blockly/javascript/blocks.js`
 
@@ -103,7 +107,7 @@ must be made available.
 
 [在线积木块编辑器(静态网页，可以在 blockly 的仓库里找到)](https://google.github.io/blockly/demos/blockfactory)
 
-## 引用项目
+# 引用项目
 
 * [google/blockly](https://github.com/google/blockly)
 * [jquery](https://github.com/jquery/jquery)
