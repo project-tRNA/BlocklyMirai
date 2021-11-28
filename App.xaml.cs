@@ -28,6 +28,7 @@ namespace BlocklyMirai
             //settings.CefCommandLineArgs.Add("disable-gpu", "1");
             settings.Locale = "zh-CN";
             settings.UserAgent = "BlocklyMirai/" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            settings.DisableGpuAcceleration();
             
             if (!Cef.IsInitialized)
             {

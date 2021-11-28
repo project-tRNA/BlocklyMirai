@@ -2204,222 +2204,223 @@ function(Blockly) {
 		}
 	};
 	// BlocklyMirai START
-Blockly.Blocks['getbot'] = {
-  init: function() {
-    this.appendValueInput("qq")
-        .setCheck("Number")
-        .appendField("通过QQ");
-    this.appendDummyInput()
-        .appendField("获取机器人实例");
-    this.appendStatementInput("content")
-        .setCheck("Bot")
-        .appendField("并执行");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(160);
- this.setTooltip("获取已登录机器人实例");
- this.setHelpUrl("");
- this.imports = ['net.mamoe.mirai.Bot'];
-  }
-};
-Blockly.Blocks['newbot'] = {
-  init: function() {
-    this.appendValueInput("qq")
-        .setCheck("Number")
-        .appendField("登录机器人，QQ：");
-    this.appendValueInput("password")
-        .setCheck("String")
-        .appendField("密码：");
-    this.appendStatementInput("content")
-        .setCheck("BotConfiguration")
-        .appendField("参数");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(160);
- this.setTooltip("获取已登录机器人实例");
- this.setHelpUrl("");
- this.imports = [
-   'net.mamoe.mirai.BotFactory',
-   'net.mamoe.mirai.utils.BotConfiguration'
- ]
-  }
-};
-Blockly.Blocks['loginprotocol'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("参数：登录协议")
-        .appendField(new Blockly.FieldDropdown([["安卓","ANDROID_PHONE"], ["平板","ANDROID_PAD"], ["手表","ANDROID_WATCH"]]), "protocol");
-    this.setColour(290);
- this.setPreviousStatement(true, null);
- this.setNextStatement(true, null);
- this.setTooltip("登录时设置登录协议");
- this.setHelpUrl("");
- this.imports = ['net.mamoe.mirai.utils.BotConfiguration.MiraiProtocol'];
-  }
-};
-Blockly.Blocks['loginfilebaseddeviceinfo'] = {
-  init: function() {
-    this.appendValueInput("path")
-        .setCheck("String")
-        .appendField("参数：设备信息文件路径");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(290);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-Blockly.Blocks['pluginmain'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("插件主类 (请勿用特殊手段移除此积木块)");
-    this.appendDummyInput()
-        .appendField("名称")
-        .appendField(new Blockly.FieldTextInput("ExamplePlugin"), "name")
-        .appendField("版本")
-        .appendField(new Blockly.FieldTextInput("1.0"), "version");
-    this.appendDummyInput()
-        .appendField("作者")
-        .appendField(new Blockly.FieldTextInput(""), "author");
-    this.appendDummyInput()
-        .appendField("主类")
-        .appendField(new Blockly.FieldTextInput("com.example.blocklymirai.BlocklyMirai"), "mainclass");
-    this.appendStatementInput("args")
-        .setCheck(null)
-        .appendField("参数");
-    this.setColour(120);
- this.setTooltip("插件主类框架");
- this.setHelpUrl("");
- this.setDeletable(false);
- this.contextMenu = false;
- this.imports = [
-   'net.mamoe.mirai.console.plugin.jvm.JavaPlugin',
-   'net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder',
-   'net.mamoe.mirai.event.ListenerHost'
- ]
-  }
-};
-Blockly.Blocks['listen_event'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("方法名")
-        .appendField(new Blockly.FieldTextInput("onEvent"), "func_name")
-        .appendField("优先级")
-        .appendField(new Blockly.FieldDropdown([["1-最高","HIGHEST"], ["2-高", "HIGH"], ["3-普通", "NORMAL"], ["4-低", "LOW"], ["5-最低", "LOWEST"], ["6-监视", "MONITOR"]]), "priority");
-    this.appendDummyInput()
-		.appendField("当触发事件")
-        .appendField(new Blockly.FieldDropdown([
-			["机器人 头像改变", "BotAvatarChangedEvent"],
-			["机器人 在群内权限改变", "BotGroupPermissionChangeEvent"],
-			["机器人 被邀请加入群", "BotInvitedJoinGroupRequestEvent"],
-			["机器人 已加群", "BotJoinGroupEvent"],
-			["机器人 已主动加群", "BotJoinGroupEvent.Active"],
-			["机器人 已被邀请入群", "BotJoinGroupEvent.Invite"],
-			["机器人 已通过恢复入群", "BotJoinGroupEvent.Retrieve"],
-			["机器人 主动退群", "BotLeaveEvent.Active"],
-			["机器人 被踢出群", "BotLeaveEvent.Kick"],
-			["机器人 被禁言", "BotMuteEvent"],
-			["机器人 被取消禁言", "BotUnmuteEvent"],
-			["机器人 昵称改变", "BotNickChangedEvent"],
-			["机器人 掉线", "BotOfflineEvent"],
-			["机器人 掉线-主动", "BotOfflineEvent.Active"],
-			["机器人 掉线-Cause Aware", "BotOfflineEvent.CauseAware"],
-			["机器人 掉线-Dropped", "BotOfflineEvent.Dropped"],
-			["机器人 掉线-强制", "BotOfflineEvent.Force"],
-			["机器人 掉线-MsfOffline", "BotOfflineEvent."],
-			["机器人 掉线-错误包", "BotOfflineEvent.PacketFactoryErrorCode"],
-			["机器人 掉线-需要重连", "BotOfflineEvent.RequireReconnect"],
-			["机器人 上线", "BotOnlineEvent"],
-			["机器人 重新登录", "BotReloginEvent"],
-			["消息", "MessageEvent"],
-			["消息 (同步)", "MessageSyncEvent"],
-			["机器人 预发送消息", "MessagePreSendEvent"],
-			["机器人 已发送消息", "MessagePostSendEvent"],
-			["其他客户端 消息", "OtherClientMessageEvent"],
-			["其他客户端 上线", "OtherClientOnline"],
-			["其他客户端 下线", "OtherClientOffline"],
-			["收到 戳一戳", "NudgeEvent"],
-			["收到 添加好友请求", "NewFriendRequestEvent"],
-			["好友 消息", "FriendMessageEvent"],
-			["好友 消息(同步)", "FriendMessageSyncEvent"],
-			["好友 消息被撤回", "MessageRecallEvent.FriendRecall"],
-			["机器人 预发送好友消息", "FriendMessagePreSendEvent"],
-			["机器人 已发送好友消息", "FriendMessagePostSendEvent"],
-			["好友 已添加", "FriendAddEvent"],
-			["好友 头像改变", "FriendAvatarChangedEvent"],
-			["好友 删除", "FriendDeleteEvent"],
-			["好友 信息改变", "FriendInfoChangeEvent"],
-			["好友 “正在输入”状态改变", "FriendInputStatusChangedEvent"],
-			["好友 昵称改变", "FriendNickChangedEvent"],
-			["好友 备注改变", "FriendRemarkChangeEvent"],
-			["群聊 消息", "GroupMessageEvent"],
-			["群聊 消息(同步)", "GroupMessageSyncEvent"],
-			["群聊 消息被撤回", "MessageRecallEvent.GroupRecall"],
-			["机器人 预发送群聊消息", "GroupMessagePreSendEvent"],
-			["机器人 已发送群聊消息", "GroupMessagePostSendEvent"],
-			["群聊 临时会话消息", "GroupTempMessageEvent"],
-			["群聊 临时会话消息(同步)", "GroupTempMessageSyncEvent"],
-			["机器人 预发送群聊临时会话消息", "GroupTempMessagePreSendEvent"],
-			["机器人 已发送群聊临时会话消息", "GroupTempMessagePostSendEvent"],
-			["群聊 允许匿名聊天", "GroupAllowAnonymousChatEvent"],
-			["群聊 允许坦白说", "GroupAllowConfessTalkEvent"],
-			["群聊 允许邀请进群", "GroupAllowMemberInviteEvent"],
-			["群聊 入群公告改变", "GroupEntranceAnnouncementChangeEvent"],
-			["群聊 群员信息改变", "GroupMemberInfoChangeEvent"],
-			["群聊 全员禁言", "GroupMuteAllEvent"],
-			["群聊 名称改变", "GroupNameChangeEvent"],
-			["群聊 设置改变", "GroupSettingChangeEvent"],
-			["群聊 全员禁言", "GroupMuteAllEvent"],
-			["群聊 龙王改变", "GroupTalkativeChangeEvent"],
-			["群员 群名片改变", "MemberCardChangeEvent"],
-			["群员 群荣誉变动(当前2.8.0只支持龙王，下同)", "MemberHonorChangeEvent"],
-			["群员 获得群荣誉", "MemberHonorChangeEvent.Achieve"],
-			["群员 失去群荣誉", "MemberHonorChangeEvent.Lose"],
-			["群员 已加入群", "MemberJoinEvent"],
-			["群员 已主动加群", "MemberJoinEvent.Active"],
-			["群员 已接受邀请加群", "MemberJoinEvent.Invite"],
-			["群员 已通过恢复加群", "MemberJoinEvent.Retrieve"],
-			["有人申请加群", "MemberJoinRequestEvent"],
-			["群员 离开群聊", "MemberLeaveEvent"],
-			["群员 被踢出群聊", "MemerLeaveEvent.Kick"],
-			["群员 主动退出群聊", "MemberLeaveEvent.Quit"],
-			["群员 被禁言", "MemberMuteEvent"],
-			["群员 被取消禁言", "MemberUnmuteEvent"],
-			["群员 权限(身份)改变", "MemberPermissionChangeEvent"],
-			["群员 头衔改变", "MemberSpecialTitleChangeEvent"],
-			["新增陌生人", "StrangerAddEvent"],
-			["陌生人 消息", "StrangerMessageEvent"],
-			["陌生人 消息(同步)", "StrangerMessageSyncEvent"],
-			["机器人 预发送陌生人消息", "StrangerMessagePreSendEvent"],
-			["机器人 已发送陌生人消息", "StrangerMessagePostSendEvent"],
-			["陌生人 关系转变", "StrangerRelationChangeEvent"],
-			["陌生人 关系转变-已删除", "StrangerRelationChangeEvent.Deleted"],
-			["陌生人 关系转变-已添加好友", "StrangerRelationChangeEvent.Friended"],
-			["上传图片 成功", "ImageUploadEvent.Succeed"],
-			["上传图片 失败", "ImageUploadEvent.Failed"]
-		]), "event")
-        .appendField("时");
-    this.appendStatementInput("content")
-        .setCheck(null)
-        .appendField("执行");
-    this.setColour(120);
- this.setTooltip("插件主类框架\n请尽量不要存在重复的方法名\n事件监听器的调用顺序为 (从左到右):\n" +
- " [最高] -> [高] -> [普通] -> [低] -> [最低] -> [监视]\n"+
- "\n" +
- " - 使用 [监视] 优先级的监听器将会被【并行】调用.\n" +
- " - 使用其他优先级的监听器都将会【按顺序】调用.\n" +
- "   因此一个监听器的挂起可以阻塞事件处理过程而导致低优先级的监听器较晚处理.");
- this.setHelpUrl("");
- this.imports = [
-   'net.mamoe.mirai.event.EventHandler',
-   'net.mamoe.mirai.event.EventPriority',
-   'net.mamoe.mirai.event.events.*'
- ]
-  }
-};
+	Blockly.Blocks['getbot'] = {
+		init: function () {
+			this.appendValueInput("qq")
+				.setCheck("Number")
+				.appendField("通过QQ");
+			this.appendDummyInput()
+				.appendField("获取机器人实例");
+			this.appendStatementInput("content")
+				.setCheck("Bot")
+				.appendField("并执行");
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(160);
+			this.setTooltip("获取已登录机器人实例");
+			this.setHelpUrl("");
+			this.imports = ['net.mamoe.mirai.Bot'];
+			this.returnType = ["Bot"];
+		}
+	};
+	Blockly.Blocks['newbot'] = {
+		init: function () {
+			this.appendValueInput("qq")
+				.setCheck("Number")
+				.appendField("登录机器人，QQ：");
+			this.appendValueInput("password")
+				.setCheck("String")
+				.appendField("密码：");
+			this.appendStatementInput("content")
+				.setCheck("BotConfiguration")
+				.appendField("参数");
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(160);
+			this.setTooltip("获取已登录机器人实例");
+			this.setHelpUrl("");
+			this.imports = [
+				'net.mamoe.mirai.BotFactory',
+				'net.mamoe.mirai.utils.BotConfiguration'
+			]
+		}
+	};
+	Blockly.Blocks['loginprotocol'] = {
+		init: function () {
+			this.appendDummyInput()
+				.appendField("参数：登录协议")
+				.appendField(new Blockly.FieldDropdown([["安卓", "ANDROID_PHONE"], ["平板", "ANDROID_PAD"], ["手表", "ANDROID_WATCH"]]), "protocol");
+			this.setColour(290);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setTooltip("登录时设置登录协议");
+			this.setHelpUrl("");
+			this.imports = ['net.mamoe.mirai.utils.BotConfiguration.MiraiProtocol'];
+		}
+	};
+	Blockly.Blocks['loginfilebaseddeviceinfo'] = {
+		init: function () {
+			this.appendValueInput("path")
+				.setCheck("String")
+				.appendField("参数：设备信息文件路径");
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(290);
+			this.setTooltip("");
+			this.setHelpUrl("");
+		}
+	};
+	Blockly.Blocks['pluginmain'] = {
+		init: function () {
+			this.appendDummyInput()
+				.appendField("插件主类 (请勿用特殊手段移除此积木块)");
+			this.appendDummyInput()
+				.appendField("名称")
+				.appendField(new Blockly.FieldTextInput("ExamplePlugin"), "name")
+				.appendField("版本")
+				.appendField(new Blockly.FieldTextInput("1.0"), "version");
+			this.appendDummyInput()
+				.appendField("作者")
+				.appendField(new Blockly.FieldTextInput(""), "author");
+			this.appendDummyInput()
+				.appendField("主类")
+				.appendField(new Blockly.FieldTextInput("com.example.blocklymirai.BlocklyMirai"), "mainclass");
+			this.appendStatementInput("args")
+				.setCheck(null)
+				.appendField("参数");
+			this.setColour(120);
+			this.setTooltip("插件主类框架");
+			this.setHelpUrl("");
+			this.setDeletable(false);
+			this.contextMenu = false;
+			this.imports = [
+				'net.mamoe.mirai.console.plugin.jvm.JavaPlugin',
+				'net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder',
+				'net.mamoe.mirai.event.ListenerHost'
+			]
+		}
+	};
+	Blockly.Blocks['listen_event'] = {
+		init: function () {
+			this.appendDummyInput()
+				.appendField("方法名")
+				.appendField(new Blockly.FieldTextInput("onEvent"), "func_name")
+				.appendField("优先级")
+				.appendField(new Blockly.FieldDropdown([["1-最高", "HIGHEST"], ["2-高", "HIGH"], ["3-普通", "NORMAL"], ["4-低", "LOW"], ["5-最低", "LOWEST"], ["6-监视", "MONITOR"]]), "priority");
+			this.appendDummyInput()
+				.appendField("当触发事件")
+				.appendField(new Blockly.FieldDropdown([
+					["机器人 头像改变", "BotAvatarChangedEvent"],
+					["机器人 在群内权限改变", "BotGroupPermissionChangeEvent"],
+					["机器人 被邀请加入群", "BotInvitedJoinGroupRequestEvent"],
+					["机器人 已加群", "BotJoinGroupEvent"],
+					["机器人 已主动加群", "BotJoinGroupEvent.Active"],
+					["机器人 已被邀请入群", "BotJoinGroupEvent.Invite"],
+					["机器人 已通过恢复入群", "BotJoinGroupEvent.Retrieve"],
+					["机器人 主动退群", "BotLeaveEvent.Active"],
+					["机器人 被踢出群", "BotLeaveEvent.Kick"],
+					["机器人 被禁言", "BotMuteEvent"],
+					["机器人 被取消禁言", "BotUnmuteEvent"],
+					["机器人 昵称改变", "BotNickChangedEvent"],
+					["机器人 掉线", "BotOfflineEvent"],
+					["机器人 掉线-主动", "BotOfflineEvent.Active"],
+					["机器人 掉线-Cause Aware", "BotOfflineEvent.CauseAware"],
+					["机器人 掉线-Dropped", "BotOfflineEvent.Dropped"],
+					["机器人 掉线-强制", "BotOfflineEvent.Force"],
+					["机器人 掉线-MsfOffline", "BotOfflineEvent."],
+					["机器人 掉线-错误包", "BotOfflineEvent.PacketFactoryErrorCode"],
+					["机器人 掉线-需要重连", "BotOfflineEvent.RequireReconnect"],
+					["机器人 上线", "BotOnlineEvent"],
+					["机器人 重新登录", "BotReloginEvent"],
+					["消息", "MessageEvent"],
+					["消息 (同步)", "MessageSyncEvent"],
+					["机器人 预发送消息", "MessagePreSendEvent"],
+					["机器人 已发送消息", "MessagePostSendEvent"],
+					["其他客户端 消息", "OtherClientMessageEvent"],
+					["其他客户端 上线", "OtherClientOnline"],
+					["其他客户端 下线", "OtherClientOffline"],
+					["收到 戳一戳", "NudgeEvent"],
+					["收到 添加好友请求", "NewFriendRequestEvent"],
+					["好友 消息", "FriendMessageEvent"],
+					["好友 消息(同步)", "FriendMessageSyncEvent"],
+					["好友 消息被撤回", "MessageRecallEvent.FriendRecall"],
+					["机器人 预发送好友消息", "FriendMessagePreSendEvent"],
+					["机器人 已发送好友消息", "FriendMessagePostSendEvent"],
+					["好友 已添加", "FriendAddEvent"],
+					["好友 头像改变", "FriendAvatarChangedEvent"],
+					["好友 删除", "FriendDeleteEvent"],
+					["好友 信息改变", "FriendInfoChangeEvent"],
+					["好友 “正在输入”状态改变", "FriendInputStatusChangedEvent"],
+					["好友 昵称改变", "FriendNickChangedEvent"],
+					["好友 备注改变", "FriendRemarkChangeEvent"],
+					["群聊 消息", "GroupMessageEvent"],
+					["群聊 消息(同步)", "GroupMessageSyncEvent"],
+					["群聊 消息被撤回", "MessageRecallEvent.GroupRecall"],
+					["机器人 预发送群聊消息", "GroupMessagePreSendEvent"],
+					["机器人 已发送群聊消息", "GroupMessagePostSendEvent"],
+					["群聊 临时会话消息", "GroupTempMessageEvent"],
+					["群聊 临时会话消息(同步)", "GroupTempMessageSyncEvent"],
+					["机器人 预发送群聊临时会话消息", "GroupTempMessagePreSendEvent"],
+					["机器人 已发送群聊临时会话消息", "GroupTempMessagePostSendEvent"],
+					["群聊 允许匿名聊天", "GroupAllowAnonymousChatEvent"],
+					["群聊 允许坦白说", "GroupAllowConfessTalkEvent"],
+					["群聊 允许邀请进群", "GroupAllowMemberInviteEvent"],
+					["群聊 入群公告改变", "GroupEntranceAnnouncementChangeEvent"],
+					["群聊 群员信息改变", "GroupMemberInfoChangeEvent"],
+					["群聊 全员禁言", "GroupMuteAllEvent"],
+					["群聊 名称改变", "GroupNameChangeEvent"],
+					["群聊 设置改变", "GroupSettingChangeEvent"],
+					["群聊 全员禁言", "GroupMuteAllEvent"],
+					["群聊 龙王改变", "GroupTalkativeChangeEvent"],
+					["群员 群名片改变", "MemberCardChangeEvent"],
+					["群员 群荣誉变动(当前2.8.0只支持龙王，下同)", "MemberHonorChangeEvent"],
+					["群员 获得群荣誉", "MemberHonorChangeEvent.Achieve"],
+					["群员 失去群荣誉", "MemberHonorChangeEvent.Lose"],
+					["群员 已加入群", "MemberJoinEvent"],
+					["群员 已主动加群", "MemberJoinEvent.Active"],
+					["群员 已接受邀请加群", "MemberJoinEvent.Invite"],
+					["群员 已通过恢复加群", "MemberJoinEvent.Retrieve"],
+					["有人申请加群", "MemberJoinRequestEvent"],
+					["群员 离开群聊", "MemberLeaveEvent"],
+					["群员 被踢出群聊", "MemerLeaveEvent.Kick"],
+					["群员 主动退出群聊", "MemberLeaveEvent.Quit"],
+					["群员 被禁言", "MemberMuteEvent"],
+					["群员 被取消禁言", "MemberUnmuteEvent"],
+					["群员 权限(身份)改变", "MemberPermissionChangeEvent"],
+					["群员 头衔改变", "MemberSpecialTitleChangeEvent"],
+					["新增陌生人", "StrangerAddEvent"],
+					["陌生人 消息", "StrangerMessageEvent"],
+					["陌生人 消息(同步)", "StrangerMessageSyncEvent"],
+					["机器人 预发送陌生人消息", "StrangerMessagePreSendEvent"],
+					["机器人 已发送陌生人消息", "StrangerMessagePostSendEvent"],
+					["陌生人 关系转变", "StrangerRelationChangeEvent"],
+					["陌生人 关系转变-已删除", "StrangerRelationChangeEvent.Deleted"],
+					["陌生人 关系转变-已添加好友", "StrangerRelationChangeEvent.Friended"],
+					["上传图片 成功", "ImageUploadEvent.Succeed"],
+					["上传图片 失败", "ImageUploadEvent.Failed"]
+				]), "event")
+				.appendField("时");
+			this.appendStatementInput("content")
+				.setCheck(null)
+				.appendField("执行");
+			this.setColour(120);
+			this.setTooltip("插件主类框架\n请尽量不要存在重复的方法名\n事件监听器的调用顺序为 (从左到右):\n" +
+				" [最高] -> [高] -> [普通] -> [低] -> [最低] -> [监视]\n" +
+				"\n" +
+				" - 使用 [监视] 优先级的监听器将会被【并行】调用.\n" +
+				" - 使用其他优先级的监听器都将会【按顺序】调用.\n" +
+				"   因此一个监听器的挂起可以阻塞事件处理过程而导致低优先级的监听器较晚处理.");
+			this.setHelpUrl("");
+			this.imports = [
+				'net.mamoe.mirai.event.EventHandler',
+				'net.mamoe.mirai.event.EventPriority',
+				'net.mamoe.mirai.event.events.*'
+			]
+		}
+	};
 	Blockly.Blocks['event_getbot'] = {
 		init: function() {
 			this.appendValueInput('content')
@@ -2430,8 +2431,9 @@ Blockly.Blocks['listen_event'] = {
 			this.setColour(230);
 			this.setTooltip("");
 			this.setHelpUrl("");
- // 几乎所有事件都能 getBot
- // this.allowOnEvents = ...;
+			// 几乎所有事件都能 getBot
+			// this.allowOnEvents = ...;
+			this.returnType = ["Bot"];
 		}
 	};
 	Blockly.Blocks['event_getmessage'] = {
@@ -2538,6 +2540,7 @@ Blockly.Blocks['listen_event'] = {
 				'StrangerMessagePreSendEvent',
 				'StrangerMessagePostSendEvent'
 			];
+			this.returnType = ["Contact"];
 		}
 	};
 	Blockly.Blocks['event_getgroup'] = {
@@ -2575,6 +2578,7 @@ Blockly.Blocks['listen_event'] = {
 				'GroupTempMessagePreSendEvent',
 				'GroupTempMessagePostSendEvent'
 			];
+			this.returnType = ["Contact", "Group"];
 		}
 	};
 	Blockly.Blocks['event_getfriend'] = {
@@ -2601,21 +2605,34 @@ Blockly.Blocks['listen_event'] = {
 		'FriendNickChangedEvent',
 		'FriendRemarkChangeEvent'
 			];
+			this.returnType = ["Contact", "Friend"];
 		}
 	};
 	Blockly.Blocks['contact_sendmessage'] = {
-  init: function() {
-    this.appendValueInput("content")
-        .setCheck(null)
-        .appendField("发送消息");
-    this.setOutput(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
+		init: function () {
+			this.appendValueInput("content")
+				.setCheck(null)
+				.appendField("发送消息");
+			this.setOutput(true, null);
+			this.setColour(230);
+			this.setTooltip("");
+			this.setHelpUrl("");
+			this.requireType = ["Contact"];
+		}
+	};
+	Blockly.Blocks['contact_getid'] = {
+		init: function () {
+			this.appendDummyInput()
+				.appendField("获取ID");
+			this.setOutput(true, "Number");
+			this.setColour(230);
+			this.setTooltip("");
+			this.setHelpUrl("");
+			this.requireType = ["Contact"];
+		}
+	};
 	Blockly.Blocks['onenable'] = {
-		init: function() {
+		init: function () {
 			this.appendDummyInput()
 				.appendField("插件启用时执行");
 			this.appendStatementInput("content")
@@ -2623,38 +2640,38 @@ Blockly.Blocks['listen_event'] = {
 			this.setColour(230);
 			this.setTooltip("");
 			this.setHelpUrl("");
- this.setDeletable(false);
- this.contextMenu = false;
- this.imports = ['net.mamoe.mirai.event.GlobalEventChannel'];
+			this.setDeletable(false);
+			this.contextMenu = false;
+			this.imports = ['net.mamoe.mirai.event.GlobalEventChannel'];
 		}
 	};
     // BlocklyMirai END
 	// Java START
-Blockly.Blocks['java_code'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("代码")
-        .appendField(new Blockly.FieldTextInput(""), "code");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(20);
- this.setTooltip("自定义输入java代码");
- this.setHelpUrl("");
-  }
-};	
-Blockly.Blocks['notes'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("注释")
-        .appendField(new Blockly.FieldTextInput(""), "notes");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(120);
- this.setTooltip("添加代码注释");
- this.setHelpUrl("");
-  }
-};
+	Blockly.Blocks['java_code'] = {
+		init: function () {
+			this.appendDummyInput()
+				.appendField("代码")
+				.appendField(new Blockly.FieldTextInput(""), "code");
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(20);
+			this.setTooltip("自定义输入java代码");
+			this.setHelpUrl("");
+		}
+	};
+	Blockly.Blocks['notes'] = {
+		init: function () {
+			this.appendDummyInput()
+				.appendField("注释")
+				.appendField(new Blockly.FieldTextInput(""), "notes");
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(120);
+			this.setTooltip("添加代码注释");
+			this.setHelpUrl("");
+		}
+	};
 	// Java END
 	Blockly.Constants.Text.QUOTE_IMAGE_MIXIN = {
 		QUOTE_IMAGE_LEFT_DATAURI: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",

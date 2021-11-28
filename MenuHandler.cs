@@ -18,6 +18,7 @@ namespace BlocklyMirai
         }
         protected override void OnBeforeContextMenu(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
+            model.Clear();
             if (!mw.Config["debug"].ToBool()) return;
             model.AddItem(CefMenuCommand.Reload, "重新加载");
             model.AddItem(CefMenuCommand.ViewSource, "打开 开发者工具");

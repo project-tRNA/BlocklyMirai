@@ -9,7 +9,7 @@
         Title="代码 - BlocklyMirai" MinHeight="500" MinWidth="820" Height="600" Width="860" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="/blockly/favicon.ico">
     <Grid>
         <Border>
-            <wpf:ChromiumWebBrowser x:Name="webBrowser1"/>
+            <wpf:ChromiumWebBrowser x:Name="webBrowser1" />
         </Border>
     </Grid>
 </Window>

@@ -34,11 +34,10 @@ namespace BlocklyMirai
                 File.WriteAllText(Environment.CurrentDirectory + "/config.json", Properties.Resources.DefaultConfig);
             this.Config = JsonDocument.FromString(File.ReadAllText(Environment.CurrentDirectory + "/config.json")).Object;
             InitializeComponent();
+            this.Focus();
+            this.webBrowser1.BrowserSettings.BackgroundColor = 0xEEEEEE;
             this.webBrowser1.LoadHtml(Properties.Resources.DefaultHtml);
-        }
-        
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+            this.webBrowser1.BrowserSettings.WindowlessFrameRate = 60;
             webBrowser1.Language = XmlLanguage.GetLanguage("zh-cn");
             webBrowser1.MenuHandler = new MenuHandler(this);
             webBrowser1.LifeSpanHandler = new LifeSpanHandler();
@@ -50,6 +49,11 @@ namespace BlocklyMirai
                     repo.Register("blocklymirai", new JavascriptBridge(this), isAsync: true, options: BindingOptions.DefaultBinder);
                 }
             };
+
+        }
+        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             webBrowser1.Address = "file:///" + Environment.CurrentDirectory.Replace("\\", "/") + "/blockly/index.html";
         }
         

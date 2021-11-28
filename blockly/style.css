@@ -3,10 +3,14 @@ html, body {
 }
 
 body {
-  background-color: #fff;
-  font-family: sans-serif;
-  margin: 0;
-  overflow: hidden;
+    background-color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .farSide {
@@ -321,9 +325,9 @@ td {
   direction: ltr;
 }
 pre.content {
-  border: 1px solid #ccc;
-  margin-top: 48px;
-  overflow: scroll;
+    border: 1px solid #ccc;
+    margin-top: 48px;
+    overflow: scroll;
 }
 #area_blocks {
   padding: 0;
@@ -352,18 +356,22 @@ pre.content {
   background: #fff;
 }
 #content_mirai {
-  position: absolute;
-  top: 65px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
-  margin: 0;
-  resize: none;
-  outline: none;
-  border: 1px solid #ccc;
-  font-family: monospace;
-  overflow: scroll;
-  background: #fff;
+    position: absolute;
+    top: 65px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    margin: 0;
+    resize: none;
+    outline: none;
+    border: 1px solid #ccc;
+    font-family: monospace;
+    overflow: scroll;
+    background: #fff;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 #languageMenu {
   vertical-align: top;
